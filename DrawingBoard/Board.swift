@@ -13,7 +13,7 @@ protocol PaintBrush {
     func prepareForContext(context: CGContextRef)
     
     func drawAtPoint(point: CGPoint, path: CGMutablePathRef)
-    
+
 //    func layerForBeginPoint(beginPoint: CGPoint, endPoint: CGPoint) -> CALayer
 }
 
@@ -21,7 +21,7 @@ class BasePainter : NSObject, PaintBrush {
     var beginPoint: CGPoint!
     var fillColor: CGColorRef!
     var strokeColor: CGColorRef!
-    
+
     func prepareForContext(context: CGContextRef) {
         // ...
     }
@@ -47,7 +47,9 @@ class Board: UIView {
     }
     
     private var endPoint: CGPoint?
-    private var lastPath: CGMutablePathRef?
+//    private var lastPath: CGMutablePathRef?
+    
+    private var drawImage: UIImage?
     
     override init() {
         painter = LinePainter()
@@ -66,13 +68,13 @@ class Board: UIView {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.painter.beginPoint = touches.anyObject()!.locationInView(self)
         
-        setNeedsDisplay()
+        drawingImage()
     }
     
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
         endPoint = touches.anyObject()!.locationInView(self)
         
-        setNeedsDisplay()
+        drawingImage()
     }
     
     override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
@@ -82,32 +84,36 @@ class Board: UIView {
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         endPoint = nil
         
-        if let lastPath = self.lastPath {
-            var bounds = CGPathGetBoundingBox(lastPath)
-            bounds = CGRectApplyAffineTransform(bounds, CGAffineTransformMakeScale(0, 0))
-            
-            let sublayer = CAShapeLayer()
-            sublayer.anchorPoint = CGPoint(x: 0, y: 0)
-            sublayer.strokeColor = UIColor.blackColor().CGColor
-            sublayer.fillColor = UIColor.clearColor().CGColor
-            sublayer.path = lastPath
-            sublayer.position = bounds.origin
-            sublayer.bounds = CGRect(origin: CGPointZero, size: bounds.size)
-            
-            self.layer.addSublayer(sublayer)
-        }
+//        if let lastPath = self.lastPath {
+//            var bounds = CGPathGetBoundingBox(lastPath)
+//            bounds = CGRectApplyAffineTransform(bounds, CGAffineTransformMakeScale(0, 0))
+//            
+//            let sublayer = CAShapeLayer()
+//            sublayer.anchorPoint = CGPoint(x: 0, y: 0)
+//            sublayer.strokeColor = UIColor.blackColor().CGColor
+//            sublayer.fillColor = UIColor.clearColor().CGColor
+//            sublayer.path = lastPath
+//            sublayer.position = bounds.origin
+//            sublayer.bounds = CGRect(origin: CGPointZero, size: bounds.size)
+//
+//            self.layer.addSublayer(sublayer)
+//        }
     }
     
     // MARK: - drawing
     
-    override func drawRect(rect: CGRect) {
+    func drawingImage() {
         if let endPoint = self.endPoint {
+            UIGraphicsBeginImageContext(self.bounds.size)
             let context = UIGraphicsGetCurrentContext()
             
 //            let layer = painter.layerForBeginPoint(painter.beginPoint, endPoint: endPoint)
 //            var bounds = CGPathGetBoundingBox(layer.path)
 //            layer.bounds = CGRect(origin: CGPointZero, size: bounds.size)
 //            self.layer.addSublayer(layer)
+//            CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeClear);
+            
+            self.drawImage?.drawInRect(self.bounds)
 
             painter.prepareForContext(context)
 
@@ -118,7 +124,13 @@ class Board: UIView {
             CGContextAddPath(context, path)
             CGContextStrokePath(context)
 
-            lastPath = path
+//            lastPath = path
+            self.drawImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+        }
+        
+        if let drawImage = self.drawImage {
+            self.backgroundColor = UIColor(patternImage: drawImage)
         }
     }
 }
