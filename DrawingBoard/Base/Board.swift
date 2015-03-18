@@ -8,42 +8,9 @@
 
 import UIKit
 
-protocol PaintBrush {
-    
-    func supportedContinuousDraw() -> Bool;
-    
-    func prepareForContext(context: CGContextRef)
-    
-    func drawAtPoint(point: CGPoint, path: CGMutablePathRef)
-}
-
-class BasePainter : NSObject, PaintBrush {
-    var beginPoint: CGPoint!
-    var fillColor: CGColorRef!
-    var strokeColor: CGColorRef!
-
-    func supportedContinuousDraw() -> Bool {
-        return false
-    }
-    
-    func prepareForContext(context: CGContextRef) {
-        // ...
-    }
-    
-    func drawAtPoint(point: CGPoint, path: CGMutablePathRef) {
-        // ...
-    }
-    
-    func layerForBeginPoint(beginPoint: CGPoint, endPoint: CGPoint) -> CALayer {
-        return CALayer()
-    }
-}
-
-////////////////////////////////////////////////////////////////////
-
 class Board: UIImageView {
 
-    var painter: BasePainter {
+    var painter: BaseBrush {
         didSet {
             painter.strokeColor = UIColor.blackColor().CGColor
             painter.fillColor = UIColor.clearColor().CGColor
@@ -55,13 +22,13 @@ class Board: UIImageView {
     private var realImage: UIImage?
     
     override init() {
-        painter = LinePainter()
+        painter = LineBrush()
         
         super.init()
     }
 
     required init(coder aDecoder: NSCoder) {
-        painter = LinePainter()
+        painter = LineBrush()
         
         super.init(coder: aDecoder)
     }
@@ -115,7 +82,7 @@ class Board: UIImageView {
             CGContextStrokePath(context)
 
             let previewImage = UIGraphicsGetImageFromCurrentImageContext()
-            if painter.supportedContinuousDraw() {
+            if painter.supportedContinuousDrawing() {
                 self.realImage = previewImage
             }
             

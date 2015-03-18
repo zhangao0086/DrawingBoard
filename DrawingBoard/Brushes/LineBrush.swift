@@ -1,5 +1,5 @@
 //
-//  LinePainter.swift
+//  LineBrush.swift
 //  DrawingBoard
 //
 //  Created by ZhangAo on 15-2-15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LinePainter: BasePainter {
+class LineBrush: BaseBrush {
     
     override func drawAtPoint(point: CGPoint, path: CGMutablePathRef) {       
         CGPathMoveToPoint(path, nil, beginPoint.x, beginPoint.y)

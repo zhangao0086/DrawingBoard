@@ -1,5 +1,5 @@
 //
-//  RoundPainter.swift
+//  EllipseBrush.swift
 //  DrawingBoard
 //
 //  Created by ZhangAo on 15-2-16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RoundPainter: BasePainter {
+class EllipseBrush: BaseBrush {
    
     override func drawAtPoint(point: CGPoint, path: CGMutablePathRef) {
         CGPathAddEllipseInRect(path, nil, CGRect(origin: CGPoint(x: min(beginPoint.x, point.x), y: min(beginPoint.y, point.y)),

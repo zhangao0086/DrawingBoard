@@ -1,5 +1,5 @@
 //
-//  DashLinePainter.swift
+//  DashLineBrush.swift
 //  DrawingBoard
 //
 //  Created by ZhangAo on 15-2-16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashLinePainter: BasePainter {
+class DashLineBrush: BaseBrush {
    
     override func prepareForContext(context: CGContextRef) {
         let lengths: [CGFloat] = [5.0, 5.0]
