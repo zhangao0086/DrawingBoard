@@ -27,6 +27,7 @@
                                     <constraint firstAttribute="height" constant="28" id="CdZ-ME-TbZ"/>
                                 </constraints>
                                 <segments>
+                                    <segment title="点"/>
                                     <segment title="直线"/>
                                     <segment title="虚线"/>
                                     <segment title="方形"/>

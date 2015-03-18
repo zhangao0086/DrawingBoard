@@ -10,8 +10,8 @@ import UIKit
 
 class RectangleBrush: BaseBrush {
    
-    override func drawAtPoint(point: CGPoint, path: CGMutablePathRef) {
-        CGPathAddRect(path, nil, CGRect(origin: CGPoint(x: min(beginPoint.x, point.x), y: min(beginPoint.y, point.y)),
-            size: CGSize(width: abs(point.x - beginPoint.x), height: abs(point.y - beginPoint.y))))
+    override func drawInContext(context: CGContextRef) {
+        CGContextAddRect(context, CGRect(origin: CGPoint(x: min(beginPoint.x, endPoint.x), y: min(beginPoint.y, endPoint.y)),
+            size: CGSize(width: abs(endPoint.x - beginPoint.x), height: abs(endPoint.y - beginPoint.y))))
     }
 }

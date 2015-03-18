@@ -17,18 +17,16 @@ class Board: UIImageView {
         }
     }
     
-    private var endPoint: CGPoint?
-    
     private var realImage: UIImage?
     
     override init() {
-        painter = LineBrush()
+        painter = PencilBrush()
         
         super.init()
     }
 
     required init(coder aDecoder: NSCoder) {
-        painter = LineBrush()
+        painter = PencilBrush()
         
         super.init(coder: aDecoder)
     }
@@ -37,58 +35,53 @@ class Board: UIImageView {
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.painter.beginPoint = touches.anyObject()!.locationInView(self)
+        self.painter.endPoint = self.painter.beginPoint
 
         drawingImage()
     }
     
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
-        endPoint = touches.anyObject()!.locationInView(self)
+        self.painter.endPoint = touches.anyObject()!.locationInView(self)
         
         drawingImage()
     }
     
     override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
-        endPoint = nil
+        self.painter.endPoint = nil
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        endPoint = nil
+        self.painter.endPoint = nil
     }
     
     // MARK: - drawing
     
     func drawingImage() {
-        if let endPoint = self.endPoint {
-            UIGraphicsBeginImageContext(self.bounds.size)
-            
-            let context = UIGraphicsGetCurrentContext()
-            
-            self.backgroundColor!.setFill()
-            UIRectFill(self.bounds)
-            
-//            CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeClear);
-            
-            if let realImage = self.realImage {
-                realImage.drawInRect(self.bounds)
-            }
-
-            painter.prepareForContext(context)
-
-            let path = CGPathCreateMutable()
-
-            painter.drawAtPoint(endPoint, path: path)
-
-            CGContextAddPath(context, path)
-            CGContextStrokePath(context)
-
-            let previewImage = UIGraphicsGetImageFromCurrentImageContext()
-            if painter.supportedContinuousDrawing() {
-                self.realImage = previewImage
-            }
-            
-            UIGraphicsEndImageContext()
-            
-            self.image = previewImage;
+        UIGraphicsBeginImageContext(self.bounds.size)
+        
+        let context = UIGraphicsGetCurrentContext()
+        
+        self.backgroundColor!.setFill()
+        UIRectFill(self.bounds)
+        
+        //            CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeClear);
+        
+        if let realImage = self.realImage {
+            realImage.drawInRect(self.bounds)
         }
+        
+        painter.drawInContext(context);
+        CGContextStrokePath(context)
+        
+        let previewImage = UIGraphicsGetImageFromCurrentImageContext()
+        if painter.supportedContinuousDrawing() {
+            self.realImage = previewImage
+        }
+        
+        UIGraphicsEndImageContext()
+        
+        self.image = previewImage;
+        
+        self.painter.lastPoint = self.painter.endPoint
     }
 }

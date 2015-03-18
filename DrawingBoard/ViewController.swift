@@ -26,12 +26,14 @@ class ViewController: UIViewController {
      @IBAction func switchBrush(sender: UISegmentedControl) {
         switch (sender.selectedSegmentIndex) {
         case 0:
-            self.board.painter = LineBrush()
+            self.board.painter = PencilBrush()
         case 1:
-            self.board.painter = DashLineBrush()
+            self.board.painter = LineBrush()
         case 2:
-            self.board.painter = RectangleBrush()
+            self.board.painter = DashLineBrush()
         case 3:
+            self.board.painter = RectangleBrush()
+        case 4:
             self.board.painter = EllipseBrush()
         default:
             assert(false, "")
