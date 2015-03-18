@@ -44,7 +44,7 @@ class Board: UIImageView {
         
         self.painter.beginPoint = touches.anyObject()!.locationInView(self)
         self.painter.endPoint = self.painter.beginPoint
-
+        
         self.touchState = .Began
         drawingImage()
     }
