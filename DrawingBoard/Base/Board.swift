@@ -19,6 +19,12 @@ class Board: UIImageView {
     
     private var realImage: UIImage?
     
+    enum TouchState {
+        case Began, Moved, Ended
+    }
+    
+    private var touchState: TouchState!
+    
     override init() {
         painter = PencilBrush()
         
@@ -34,15 +40,19 @@ class Board: UIImageView {
     // MARK: - touches methods
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.painter.lastPoint = nil
+        
         self.painter.beginPoint = touches.anyObject()!.locationInView(self)
         self.painter.endPoint = self.painter.beginPoint
 
+        self.touchState = .Began
         drawingImage()
     }
     
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
         self.painter.endPoint = touches.anyObject()!.locationInView(self)
         
+        self.touchState = .Moved
         drawingImage()
     }
     
@@ -51,7 +61,11 @@ class Board: UIImageView {
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        self.painter.endPoint = nil
+        self.painter.endPoint = touches.anyObject()!.locationInView(self)
+        
+        self.touchState = .Ended
+        
+        drawingImage()
     }
     
     // MARK: - drawing
@@ -74,7 +88,7 @@ class Board: UIImageView {
         CGContextStrokePath(context)
         
         let previewImage = UIGraphicsGetImageFromCurrentImageContext()
-        if painter.supportedContinuousDrawing() {
+        if self.touchState == .Ended || painter.supportedContinuousDrawing() {
             self.realImage = previewImage
         }
         
