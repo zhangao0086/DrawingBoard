@@ -27,11 +27,12 @@
                                     <constraint firstAttribute="height" constant="28" id="CdZ-ME-TbZ"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="点"/>
-                                    <segment title="直线"/>
+                                    <segment title="铅笔"/>
+                                    <segment title="直尺"/>
                                     <segment title="虚线"/>
-                                    <segment title="方形"/>
+                                    <segment title="矩形"/>
                                     <segment title="圆形"/>
+                                    <segment title="橡皮擦"/>
                                 </segments>
                                 <connections>
                                     <action selector="switchBrush:" destination="vXZ-lx-hvc" eventType="valueChanged" id="DlX-9v-n8X"/>

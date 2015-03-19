@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9CCF258D1ABA7889009A534F /* EraserBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF258C1ABA7889009A534F /* EraserBrush.swift */; };
 		9CD69B341A90B25900533279 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD69B331A90B25900533279 /* AppDelegate.swift */; };
 		9CD69B361A90B25900533279 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD69B351A90B25900533279 /* ViewController.swift */; };
 		9CD69B391A90B25900533279 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CD69B371A90B25900533279 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9CCF258C1ABA7889009A534F /* EraserBrush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EraserBrush.swift; sourceTree = "<group>"; };
 		9CD69B2E1A90B25900533279 /* DrawingBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CD69B321A90B25900533279 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CD69B331A90B25900533279 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				9CDFF6EA1AB91894007BD247 /* DashLineBrush.swift */,
 				9CDFF6ED1AB91894007BD247 /* RectangleBrush.swift */,
 				9CDFF6EB1AB91894007BD247 /* EllipseBrush.swift */,
+				9CCF258C1ABA7889009A534F /* EraserBrush.swift */,
 			);
 			path = Brushes;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CCF258D1ABA7889009A534F /* EraserBrush.swift in Sources */,
 				9CDFF6F11AB91894007BD247 /* RectangleBrush.swift in Sources */,
 				9CDFF6EE1AB91894007BD247 /* DashLineBrush.swift in Sources */,
 				9CDFF6F31AB91B53007BD247 /* PencilBrush.swift in Sources */,

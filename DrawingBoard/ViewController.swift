@@ -35,6 +35,8 @@ class ViewController: UIViewController {
             self.board.painter = RectangleBrush()
         case 4:
             self.board.painter = EllipseBrush()
+        case 5:
+            self.board.painter = EraserBrush()
         default:
             assert(false, "")
         }

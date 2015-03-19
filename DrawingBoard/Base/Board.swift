@@ -78,8 +78,6 @@ class Board: UIImageView {
         self.backgroundColor!.setFill()
         UIRectFill(self.bounds)
         
-        //            CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeClear);
-        
         if let realImage = self.realImage {
             realImage.drawInRect(self.bounds)
         }
