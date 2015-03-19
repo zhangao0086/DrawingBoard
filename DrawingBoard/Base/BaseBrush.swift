@@ -20,8 +20,8 @@ class BaseBrush : NSObject, PaintBrush {
     var endPoint: CGPoint!
     var lastPoint: CGPoint?
     
-    var fillColor: CGColorRef!
-    var strokeColor: CGColorRef!
+//    var fillColor: CGColorRef!
+//    var strokeColor: CGColorRef!
     
     func supportedContinuousDrawing() -> Bool {
         return false

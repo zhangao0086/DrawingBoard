@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     }
 
 
-     @IBAction func switchBrush(sender: UISegmentedControl) {
+    @IBAction func switchBrush(sender: UISegmentedControl) {
         switch (sender.selectedSegmentIndex) {
         case 0:
             self.board.painter = PencilBrush()

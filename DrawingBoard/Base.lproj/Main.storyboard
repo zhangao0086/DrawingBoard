@@ -18,36 +18,61 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2gF-xK-2QE" customClass="Board" customModule="DrawingBoard" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="56" width="600" height="544"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kmC-9W-YdP">
-                                <rect key="frame" x="16" y="20" width="568" height="29"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5V-gv-tpy">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KNJ-Af-vO1">
+                                        <rect key="frame" x="20" y="8" width="560" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="c3l-Mc-g7V"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="铅笔"/>
+                                            <segment title="直尺"/>
+                                            <segment title="虚线"/>
+                                            <segment title="矩形"/>
+                                            <segment title="圆形"/>
+                                            <segment title="橡皮擦"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="switchBrush:" destination="vXZ-lx-hvc" eventType="valueChanged" id="hsM-Ct-1BA"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="CdZ-ME-TbZ"/>
+                                    <constraint firstAttribute="centerY" secondItem="KNJ-Af-vO1" secondAttribute="centerY" id="1FW-lr-eZ8"/>
+                                    <constraint firstAttribute="centerX" secondItem="KNJ-Af-vO1" secondAttribute="centerX" id="8Id-Qj-mbK"/>
+                                    <constraint firstItem="KNJ-Af-vO1" firstAttribute="leading" secondItem="x5V-gv-tpy" secondAttribute="leading" constant="20" id="DF1-Ad-RFR"/>
+                                    <constraint firstAttribute="height" constant="44" id="lpD-Ra-iSu"/>
+                                    <constraint firstAttribute="trailing" secondItem="KNJ-Af-vO1" secondAttribute="trailing" constant="20" id="pDu-Au-zth"/>
                                 </constraints>
-                                <segments>
-                                    <segment title="铅笔"/>
-                                    <segment title="直尺"/>
-                                    <segment title="虚线"/>
-                                    <segment title="矩形"/>
-                                    <segment title="圆形"/>
-                                    <segment title="橡皮擦"/>
-                                </segments>
-                                <connections>
-                                    <action selector="switchBrush:" destination="vXZ-lx-hvc" eventType="valueChanged" id="DlX-9v-n8X"/>
-                                </connections>
-                            </segmentedControl>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UNj-IT-0zp">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="LS6-w5-rgv"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Item" id="ffD-u3-cN6"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="2gF-xK-2QE" secondAttribute="bottom" id="6nI-EV-M3e"/>
-                            <constraint firstItem="kmC-9W-YdP" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="Pxk-Ki-t5x"/>
-                            <constraint firstItem="kmC-9W-YdP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="azr-Kz-ZkE"/>
+                            <constraint firstAttribute="trailing" secondItem="x5V-gv-tpy" secondAttribute="trailing" id="3Yt-ho-0Nt"/>
+                            <constraint firstAttribute="trailing" secondItem="UNj-IT-0zp" secondAttribute="trailing" id="8ai-Ct-ibE"/>
+                            <constraint firstItem="x5V-gv-tpy" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Gu0-1Y-yg9"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="UNj-IT-0zp" secondAttribute="bottom" id="Q3W-5k-Vcq"/>
+                            <constraint firstItem="x5V-gv-tpy" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="TJq-jU-D72"/>
+                            <constraint firstItem="UNj-IT-0zp" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Zoe-ec-OBu"/>
                             <constraint firstItem="2gF-xK-2QE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="dNW-pL-qsq"/>
+                            <constraint firstItem="2gF-xK-2QE" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="hPi-QA-FPM"/>
                             <constraint firstAttribute="trailing" secondItem="2gF-xK-2QE" secondAttribute="trailing" id="iCQ-ms-iQ3"/>
-                            <constraint firstItem="kmC-9W-YdP" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="jMj-jb-wUu"/>
-                            <constraint firstItem="2gF-xK-2QE" firstAttribute="top" secondItem="kmC-9W-YdP" secondAttribute="bottom" constant="8" id="lPd-ys-Ojg"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="2gF-xK-2QE" secondAttribute="bottom" id="vKf-vp-far"/>
                         </constraints>
                     </view>
                     <connections>
@@ -56,6 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="565" y="438.5"/>
         </scene>
     </scenes>
 </document>

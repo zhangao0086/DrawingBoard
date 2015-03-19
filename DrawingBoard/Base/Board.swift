@@ -10,12 +10,10 @@ import UIKit
 
 class Board: UIImageView {
 
-    var painter: BaseBrush {
-        didSet {
-            painter.strokeColor = UIColor.blackColor().CGColor
-            painter.fillColor = UIColor.clearColor().CGColor
-        }
-    }
+    var painter: BaseBrush
+    
+    var strokeWidth: CGFloat
+    var strokeColor: UIColor
     
     private var realImage: UIImage?
     
@@ -27,12 +25,16 @@ class Board: UIImageView {
     
     override init() {
         painter = PencilBrush()
+        strokeColor = UIColor.blackColor()
+        strokeWidth = 1
         
         super.init()
     }
 
     required init(coder aDecoder: NSCoder) {
         painter = PencilBrush()
+        strokeColor = UIColor.blackColor()
+        strokeWidth = 1
         
         super.init(coder: aDecoder)
     }
@@ -77,6 +79,10 @@ class Board: UIImageView {
         
         self.backgroundColor!.setFill()
         UIRectFill(self.bounds)
+        
+        CGContextSetLineCap(context, kCGLineCapRound)
+        CGContextSetLineWidth(context, self.strokeWidth)
+        CGContextSetStrokeColorWithColor(context, self.strokeColor.CGColor)
         
         if let realImage = self.realImage {
             realImage.drawInRect(self.bounds)
