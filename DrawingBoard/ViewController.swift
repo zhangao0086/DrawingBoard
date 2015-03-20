@@ -11,10 +11,37 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var board: Board!
+    @IBOutlet var topView: UIView!
+    @IBOutlet var bottomView: UIToolbar!
+    
+    @IBOutlet var topViewConstraintY: NSLayoutConstraint!
+    @IBOutlet var bottomViewConstraintBottom: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.board.drawingStateChangedBlock = {(state: DrawingState) -> () in
+            if state == .Began {
+                self.topViewConstraintY.constant = -self.topView.frame.size.height
+                self.bottomViewConstraintBottom.constant = -self.bottomView.frame.size.height
+                UIView.beginAnimations(nil, context: nil)
+                
+                self.topView.layoutIfNeeded()
+                self.bottomView.layoutIfNeeded()
+                
+                UIView.commitAnimations()
+            } else if state == .Ended {
+                self.topViewConstraintY.constant = 0
+                self.bottomViewConstraintBottom.constant = 0
+                UIView.beginAnimations(nil, context: nil)
+                
+                self.topView.layoutIfNeeded()
+                self.bottomView.layoutIfNeeded()
+                
+                UIView.commitAnimations()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -11,7 +11,7 @@ import UIKit
 class DashLineBrush: BaseBrush {
     
     override func drawInContext(context: CGContextRef) {
-        let lengths: [CGFloat] = [5.0, 10.0]
+        let lengths: [CGFloat] = [self.strokeWidth * 3, self.strokeWidth * 3]
         CGContextSetLineDash(context, 0, lengths, 2);
         
         CGContextMoveToPoint(context, beginPoint.x, beginPoint.y)

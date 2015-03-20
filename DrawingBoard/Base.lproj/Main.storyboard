@@ -66,7 +66,7 @@
                             <constraint firstAttribute="trailing" secondItem="x5V-gv-tpy" secondAttribute="trailing" id="3Yt-ho-0Nt"/>
                             <constraint firstAttribute="trailing" secondItem="UNj-IT-0zp" secondAttribute="trailing" id="8ai-Ct-ibE"/>
                             <constraint firstItem="x5V-gv-tpy" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Gu0-1Y-yg9"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="UNj-IT-0zp" secondAttribute="bottom" id="Q3W-5k-Vcq"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="UNj-IT-0zp" secondAttribute="bottom" symbolic="YES" id="Q3W-5k-Vcq"/>
                             <constraint firstItem="x5V-gv-tpy" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="TJq-jU-D72"/>
                             <constraint firstItem="UNj-IT-0zp" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Zoe-ec-OBu"/>
                             <constraint firstItem="2gF-xK-2QE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="dNW-pL-qsq"/>
@@ -77,6 +77,10 @@
                     </view>
                     <connections>
                         <outlet property="board" destination="2gF-xK-2QE" id="Bcw-GJ-2nV"/>
+                        <outlet property="bottomView" destination="UNj-IT-0zp" id="c5V-8E-fgM"/>
+                        <outlet property="bottomViewConstraintBottom" destination="Q3W-5k-Vcq" id="9LR-R1-beQ"/>
+                        <outlet property="topView" destination="x5V-gv-tpy" id="DIv-fx-YgW"/>
+                        <outlet property="topViewConstraintY" destination="TJq-jU-D72" id="jJN-JW-nOV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
