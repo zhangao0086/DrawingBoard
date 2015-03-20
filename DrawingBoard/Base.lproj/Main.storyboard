@@ -57,7 +57,11 @@
                                     <constraint firstAttribute="height" constant="44" id="LS6-w5-rgv"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Item" id="ffD-u3-cN6"/>
+                                    <barButtonItem title="Item" id="ffD-u3-cN6">
+                                        <connections>
+                                            <action selector="undo:" destination="vXZ-lx-hvc" id="9t2-On-HWr"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>

@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var brushes = [PencilBrush(), LineBrush(), DashLineBrush(), RectangleBrush(), EllipseBrush(), EraserBrush()]
+    
     @IBOutlet var board: Board!
     @IBOutlet var topView: UIView!
     @IBOutlet var bottomView: UIToolbar!
@@ -49,24 +51,14 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
     @IBAction func switchBrush(sender: UISegmentedControl) {
-        switch (sender.selectedSegmentIndex) {
-        case 0:
-            self.board.painter = PencilBrush()
-        case 1:
-            self.board.painter = LineBrush()
-        case 2:
-            self.board.painter = DashLineBrush()
-        case 3:
-            self.board.painter = RectangleBrush()
-        case 4:
-            self.board.painter = EllipseBrush()
-        case 5:
-            self.board.painter = EraserBrush()
-        default:
-            assert(false, "")
-        }
+        assert(sender.tag < self.brushes.count, "!!!")
+        
+        self.board.painter = self.brushes[sender.selectedSegmentIndex]
+    }
+    
+    @IBAction func undo(sender: UIBarButtonItem) {
+        self.board.undo()
     }
 }
 
