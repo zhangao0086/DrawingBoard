@@ -14,7 +14,7 @@ enum DrawingState {
 
 class Board: UIImageView {
 
-    var painter: BaseBrush
+    var painter: BaseBrush?
     
     var strokeWidth: CGFloat
     var strokeColor: UIColor
@@ -26,7 +26,6 @@ class Board: UIImageView {
     private var drawingState: DrawingState!
     
     override init() {
-        self.painter = PencilBrush()
         self.strokeColor = UIColor.blackColor()
         self.strokeWidth = 1
         
@@ -34,7 +33,6 @@ class Board: UIImageView {
     }
 
     required init(coder aDecoder: NSCoder) {
-        self.painter = PencilBrush()
         self.strokeColor = UIColor.blackColor()
         self.strokeWidth = 1
         
@@ -54,70 +52,80 @@ class Board: UIImageView {
     // MARK: - touches methods
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        self.painter.lastPoint = nil
-        
-        self.painter.beginPoint = touches.anyObject()!.locationInView(self)
-        self.painter.endPoint = self.painter.beginPoint
-        
-        self.drawingState = .Began
-        self.drawingImage()
+        if let painter = self.painter {
+            painter.lastPoint = nil
+            
+            painter.beginPoint = touches.anyObject()!.locationInView(self)
+            painter.endPoint = painter.beginPoint
+            
+            self.drawingState = .Began
+            self.drawingImage()
+        }
     }
     
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
-        self.painter.endPoint = touches.anyObject()!.locationInView(self)
-        
-        self.drawingState = .Moved
-        self.drawingImage()
+        if let painter = self.painter {
+            painter.endPoint = touches.anyObject()!.locationInView(self)
+            
+            self.drawingState = .Moved
+            self.drawingImage()
+        }
     }
     
     override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
-        self.painter.endPoint = nil
+        if let painter = self.painter {
+            painter.endPoint = nil
+        }
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        self.painter.endPoint = touches.anyObject()!.locationInView(self)
-        
-        self.drawingState = .Ended
-        
-        self.drawingImage()
+        if let painter = self.painter {
+            painter.endPoint = touches.anyObject()!.locationInView(self)
+            
+            self.drawingState = .Ended
+            
+            self.drawingImage()
+        }
     }
     
     // MARK: - drawing
     
     private func drawingImage() {
-        // hook
-        if let drawingStateChangedBlock = self.drawingStateChangedBlock {
-            drawingStateChangedBlock(state: self.drawingState)
+        if let painter = self.painter {
+            // hook
+            if let drawingStateChangedBlock = self.drawingStateChangedBlock {
+                drawingStateChangedBlock(state: self.drawingState)
+            }
+            
+            UIGraphicsBeginImageContext(self.bounds.size)
+            
+            let context = UIGraphicsGetCurrentContext()
+            
+            self.backgroundColor!.setFill()
+            UIRectFill(self.bounds)
+            
+            CGContextSetLineCap(context, kCGLineCapRound)
+            CGContextSetLineWidth(context, self.strokeWidth)
+            CGContextSetStrokeColorWithColor(context, self.strokeColor.CGColor)
+            
+            if let realImage = self.realImage {
+                realImage.drawInRect(self.bounds)
+            }
+            
+            painter.strokeWidth = self.strokeWidth
+            painter.drawInContext(context);
+            CGContextStrokePath(context)
+            
+            let previewImage = UIGraphicsGetImageFromCurrentImageContext()
+            if self.drawingState == .Ended || painter.supportedContinuousDrawing() {
+                self.realImage = previewImage
+            }
+            
+            UIGraphicsEndImageContext()
+            
+            self.image = previewImage;
+            
+            painter.lastPoint = painter.endPoint
         }
-
-        UIGraphicsBeginImageContext(self.bounds.size)
-        
-        let context = UIGraphicsGetCurrentContext()
-        
-        self.backgroundColor!.setFill()
-        UIRectFill(self.bounds)
-        
-        CGContextSetLineCap(context, kCGLineCapRound)
-        CGContextSetLineWidth(context, self.strokeWidth)
-        CGContextSetStrokeColorWithColor(context, self.strokeColor.CGColor)
-        
-        if let realImage = self.realImage {
-            realImage.drawInRect(self.bounds)
-        }
-        
-        self.painter.strokeWidth = self.strokeWidth
-        self.painter.drawInContext(context);
-        CGContextStrokePath(context)
-        
-        let previewImage = UIGraphicsGetImageFromCurrentImageContext()
-        if self.drawingState == .Ended || self.painter.supportedContinuousDrawing() {
-            self.realImage = previewImage
-        }
-        
-        UIGraphicsEndImageContext()
-        
-        self.image = previewImage;
-        
-        self.painter.lastPoint = self.painter.endPoint
     }
 }

@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        self.board.painter = brushes[0]
         self.board.drawingStateChangedBlock = {(state: DrawingState) -> () in
             if state == .Began {
                 self.topViewConstraintY.constant = -self.topView.frame.size.height
