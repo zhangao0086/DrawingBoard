@@ -70,14 +70,26 @@
                             <constraint firstAttribute="trailing" secondItem="x5V-gv-tpy" secondAttribute="trailing" id="3Yt-ho-0Nt"/>
                             <constraint firstAttribute="trailing" secondItem="UNj-IT-0zp" secondAttribute="trailing" id="8ai-Ct-ibE"/>
                             <constraint firstItem="x5V-gv-tpy" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Gu0-1Y-yg9"/>
+                            <constraint firstAttribute="trailing" secondItem="2gF-xK-2QE" secondAttribute="trailing" id="IY1-j3-wjQ"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="2gF-xK-2QE" secondAttribute="bottom" id="K9J-se-3ek"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="UNj-IT-0zp" secondAttribute="bottom" symbolic="YES" id="Q3W-5k-Vcq"/>
                             <constraint firstItem="x5V-gv-tpy" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="TJq-jU-D72"/>
                             <constraint firstItem="UNj-IT-0zp" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Zoe-ec-OBu"/>
                             <constraint firstItem="2gF-xK-2QE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="dNW-pL-qsq"/>
+                            <constraint firstItem="2gF-xK-2QE" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="egy-qf-per"/>
                             <constraint firstItem="2gF-xK-2QE" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="hPi-QA-FPM"/>
                             <constraint firstAttribute="trailing" secondItem="2gF-xK-2QE" secondAttribute="trailing" id="iCQ-ms-iQ3"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="2gF-xK-2QE" secondAttribute="bottom" id="vKf-vp-far"/>
+                            <constraint firstItem="2gF-xK-2QE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="wyJ-fh-Jaz"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="dNW-pL-qsq"/>
+                                <exclude reference="hPi-QA-FPM"/>
+                                <exclude reference="iCQ-ms-iQ3"/>
+                                <exclude reference="vKf-vp-far"/>
+                            </mask>
+                        </variation>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
