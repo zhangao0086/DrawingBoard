@@ -91,7 +91,7 @@ class Board: UIImageView {
             
             let context = UIGraphicsGetCurrentContext()
             
-            self.backgroundColor!.setFill()
+            UIColor.clearColor().setFill()
             UIRectFill(self.bounds)
             
             CGContextSetLineCap(context, kCGLineCapRound)
