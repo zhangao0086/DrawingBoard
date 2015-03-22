@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.board.painter = brushes[0]
+        self.board.brush = brushes[0]
         self.board.drawingStateChangedBlock = {(state: DrawingState) -> () in
             if state == .Began {
                 self.topViewConstraintY.constant = -self.topView.frame.size.height
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
     @IBAction func switchBrush(sender: UISegmentedControl) {
         assert(sender.tag < self.brushes.count, "!!!")
         
-        self.board.painter = self.brushes[sender.selectedSegmentIndex]
+        self.board.brush = self.brushes[sender.selectedSegmentIndex]
     }
 }
 

@@ -14,7 +14,7 @@ enum DrawingState {
 
 class Board: UIImageView {
 
-    var painter: BaseBrush?
+    var brush: BaseBrush?
     
     var strokeWidth: CGFloat
     var strokeColor: UIColor
@@ -42,11 +42,11 @@ class Board: UIImageView {
     // MARK: - touches methods
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        if let painter = self.painter {
-            painter.lastPoint = nil
+        if let brush = self.brush {
+            brush.lastPoint = nil
             
-            painter.beginPoint = touches.anyObject()!.locationInView(self)
-            painter.endPoint = painter.beginPoint
+            brush.beginPoint = touches.anyObject()!.locationInView(self)
+            brush.endPoint = brush.beginPoint
             
             self.drawingState = .Began
             self.drawingImage()
@@ -54,8 +54,8 @@ class Board: UIImageView {
     }
     
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
-        if let painter = self.painter {
-            painter.endPoint = touches.anyObject()!.locationInView(self)
+        if let brush = self.brush {
+            brush.endPoint = touches.anyObject()!.locationInView(self)
             
             self.drawingState = .Moved
             self.drawingImage()
@@ -63,14 +63,14 @@ class Board: UIImageView {
     }
     
     override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
-        if let painter = self.painter {
-            painter.endPoint = nil
+        if let brush = self.brush {
+            brush.endPoint = nil
         }
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        if let painter = self.painter {
-            painter.endPoint = touches.anyObject()!.locationInView(self)
+        if let brush = self.brush {
+            brush.endPoint = touches.anyObject()!.locationInView(self)
             
             self.drawingState = .Ended
             
@@ -81,7 +81,7 @@ class Board: UIImageView {
     // MARK: - drawing
     
     private func drawingImage() {
-        if let painter = self.painter {
+        if let brush = self.brush {
             // hook
             if let drawingStateChangedBlock = self.drawingStateChangedBlock {
                 drawingStateChangedBlock(state: self.drawingState)
@@ -102,12 +102,12 @@ class Board: UIImageView {
                 realImage.drawInRect(self.bounds)
             }
             
-            painter.strokeWidth = self.strokeWidth
-            painter.drawInContext(context);
+            brush.strokeWidth = self.strokeWidth
+            brush.drawInContext(context);
             CGContextStrokePath(context)
             
             let previewImage = UIGraphicsGetImageFromCurrentImageContext()
-            if self.drawingState == .Ended || painter.supportedContinuousDrawing() {
+            if self.drawingState == .Ended || brush.supportedContinuousDrawing() {
                 self.realImage = previewImage
             }
             
@@ -115,7 +115,7 @@ class Board: UIImageView {
             
             self.image = previewImage;
             
-            painter.lastPoint = painter.endPoint
+            brush.lastPoint = brush.endPoint
         }
     }
 }
