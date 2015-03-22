@@ -79,6 +79,7 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="2gF-xK-2QE" secondAttribute="bottom" id="vKf-vp-far"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="board" destination="2gF-xK-2QE" id="Bcw-GJ-2nV"/>
                         <outlet property="bottomView" destination="UNj-IT-0zp" id="c5V-8E-fgM"/>
@@ -89,7 +90,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="468" y="414"/>
+            <point key="canvasLocation" x="378" y="422"/>
         </scene>
     </scenes>
 </document>
