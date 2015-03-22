@@ -45,7 +45,6 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="KNJ-Af-vO1" secondAttribute="centerY" id="1FW-lr-eZ8"/>
-                                    <constraint firstAttribute="centerX" secondItem="KNJ-Af-vO1" secondAttribute="centerX" id="8Id-Qj-mbK"/>
                                     <constraint firstItem="KNJ-Af-vO1" firstAttribute="leading" secondItem="x5V-gv-tpy" secondAttribute="leading" constant="20" id="DF1-Ad-RFR"/>
                                     <constraint firstAttribute="height" constant="44" id="lpD-Ra-iSu"/>
                                     <constraint firstAttribute="trailing" secondItem="KNJ-Af-vO1" secondAttribute="trailing" constant="20" id="pDu-Au-zth"/>
@@ -75,21 +74,9 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="UNj-IT-0zp" secondAttribute="bottom" symbolic="YES" id="Q3W-5k-Vcq"/>
                             <constraint firstItem="x5V-gv-tpy" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="TJq-jU-D72"/>
                             <constraint firstItem="UNj-IT-0zp" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Zoe-ec-OBu"/>
-                            <constraint firstItem="2gF-xK-2QE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="dNW-pL-qsq"/>
                             <constraint firstItem="2gF-xK-2QE" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="egy-qf-per"/>
-                            <constraint firstItem="2gF-xK-2QE" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="hPi-QA-FPM"/>
-                            <constraint firstAttribute="trailing" secondItem="2gF-xK-2QE" secondAttribute="trailing" id="iCQ-ms-iQ3"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="2gF-xK-2QE" secondAttribute="bottom" id="vKf-vp-far"/>
                             <constraint firstItem="2gF-xK-2QE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="wyJ-fh-Jaz"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="dNW-pL-qsq"/>
-                                <exclude reference="hPi-QA-FPM"/>
-                                <exclude reference="iCQ-ms-iQ3"/>
-                                <exclude reference="vKf-vp-far"/>
-                            </mask>
-                        </variation>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
@@ -102,7 +89,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="378" y="422"/>
+            <point key="canvasLocation" x="183" y="414"/>
         </scene>
     </scenes>
 </document>
