@@ -10,7 +10,7 @@ import CoreGraphics
 
 protocol PaintBrush {
     
-    func supportedContinuousDrawing() -> Bool;
+    func supportedContinuousDrawing() -> Bool
     
     func drawInContext(context: CGContextRef)
 }

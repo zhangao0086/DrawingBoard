@@ -103,7 +103,7 @@ class Board: UIImageView {
             }
             
             brush.strokeWidth = self.strokeWidth
-            brush.drawInContext(context);
+            brush.drawInContext(context)
             CGContextStrokePath(context)
             
             let previewImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -113,7 +113,7 @@ class Board: UIImageView {
             
             UIGraphicsEndImageContext()
             
-            self.image = previewImage;
+            self.image = previewImage
             
             brush.lastPoint = brush.endPoint
         }
