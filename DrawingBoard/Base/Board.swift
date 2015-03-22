@@ -39,16 +39,6 @@ class Board: UIImageView {
         super.init(coder: aDecoder)
     }
     
-    // MARK: - public methods
-    
-    func undo() {
-        undoManager?.undo()
-    }
-    
-    func redo() {
-        undoManager?.redo()
-    }
-    
     // MARK: - touches methods
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {

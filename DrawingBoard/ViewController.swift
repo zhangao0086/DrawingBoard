@@ -57,9 +57,5 @@ class ViewController: UIViewController {
         
         self.board.painter = self.brushes[sender.selectedSegmentIndex]
     }
-    
-    @IBAction func undo(sender: UIBarButtonItem) {
-        self.board.undo()
-    }
 }
 
