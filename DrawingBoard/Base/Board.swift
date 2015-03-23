@@ -86,7 +86,7 @@ class Board: UIImageView {
             if let drawingStateChangedBlock = self.drawingStateChangedBlock {
                 drawingStateChangedBlock(state: self.drawingState)
             }
-            
+
             UIGraphicsBeginImageContext(self.bounds.size)
             
             let context = UIGraphicsGetCurrentContext()
