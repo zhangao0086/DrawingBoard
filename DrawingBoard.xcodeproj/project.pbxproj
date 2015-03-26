@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9CB604981AC44D7500C9C109 /* canvas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CB604971AC44D7500C9C109 /* canvas@2x.png */; };
 		9CCF258D1ABA7889009A534F /* EraserBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF258C1ABA7889009A534F /* EraserBrush.swift */; };
 		9CD69B341A90B25900533279 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD69B331A90B25900533279 /* AppDelegate.swift */; };
 		9CD69B361A90B25900533279 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD69B351A90B25900533279 /* ViewController.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9CB604971AC44D7500C9C109 /* canvas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "canvas@2x.png"; sourceTree = "<group>"; };
 		9CCF258C1ABA7889009A534F /* EraserBrush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EraserBrush.swift; sourceTree = "<group>"; };
 		9CD69B2E1A90B25900533279 /* DrawingBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CD69B321A90B25900533279 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		9CD69B311A90B25900533279 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9CB604971AC44D7500C9C109 /* canvas@2x.png */,
 				9CD69B321A90B25900533279 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CD69B391A90B25900533279 /* Main.storyboard in Resources */,
+				9CB604981AC44D7500C9C109 /* canvas@2x.png in Resources */,
 				9CD69B3E1A90B25900533279 /* LaunchScreen.xib in Resources */,
 				9CD69B3B1A90B25900533279 /* Images.xcassets in Resources */,
 			);
