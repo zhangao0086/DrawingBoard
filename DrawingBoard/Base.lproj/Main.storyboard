@@ -52,12 +52,15 @@
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UNj-IT-0zp">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="LS6-w5-rgv"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="画笔设置" id="ffD-u3-cN6"/>
+                                    <barButtonItem title="画笔设置" id="ffD-u3-cN6">
+                                        <connections>
+                                            <action selector="paintingBrushSettings" destination="vXZ-lx-hvc" id="VEs-aA-Dka"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Z83-Bl-JyM"/>
                                     <barButtonItem title="背景设置" id="1X1-wH-sGL"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="DOr-4D-MV8"/>

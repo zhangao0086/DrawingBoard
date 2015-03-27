@@ -18,11 +18,11 @@ class ViewController: UIViewController {
     
     @IBOutlet var topViewConstraintY: NSLayoutConstraint!
     @IBOutlet var bottomViewConstraintBottom: NSLayoutConstraint!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+
         self.board.brush = brushes[0]
         self.board.drawingStateChangedBlock = {(state: DrawingState) -> () in
             if state == .Began {
@@ -57,5 +57,13 @@ class ViewController: UIViewController {
         
         self.board.brush = self.brushes[sender.selectedSegmentIndex]
     }
+    
+    @IBAction func paintingBrushSettings() {
+
+    }
 }
+
+//class : UIView {
+//    <#properties and methods#>
+//}
 
