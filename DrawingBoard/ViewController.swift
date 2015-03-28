@@ -42,7 +42,7 @@ class ViewController: UIViewController {
             options: .DirectionLeadingToTrailing,
             metrics: nil,
             views: ["settingsView" : brushSettingsView]))
-        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[settingsView]-0-|",
+        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[settingsView]-44-|",
             options: .DirectionLeadingToTrailing,
             metrics: nil,
             views: ["settingsView" : brushSettingsView]))
@@ -101,6 +101,7 @@ class ViewController: UIViewController {
         
         self.currentSettingsView = self.toolbar.viewWithTag(1)
         self.currentSettingsView?.hidden = false
+        self.toolbar.bringSubviewToFront(self.currentSettingsView!)
     }
     
     @IBAction func endSetting() {
