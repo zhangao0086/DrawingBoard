@@ -85,8 +85,9 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="board" destination="2gF-xK-2QE" id="Bcw-GJ-2nV"/>
-                        <outlet property="bottomView" destination="UNj-IT-0zp" id="c5V-8E-fgM"/>
-                        <outlet property="bottomViewConstraintBottom" destination="Q3W-5k-Vcq" id="9LR-R1-beQ"/>
+                        <outlet property="toolbar" destination="UNj-IT-0zp" id="q6r-nx-5rd"/>
+                        <outlet property="toolbarConstraintBottom" destination="Q3W-5k-Vcq" id="vuE-aJ-FXM"/>
+                        <outlet property="toolbarConstraintHeight" destination="LS6-w5-rgv" id="epb-49-jRG"/>
                         <outlet property="topView" destination="x5V-gv-tpy" id="DIv-fx-YgW"/>
                         <outlet property="topViewConstraintY" destination="TJq-jU-D72" id="jJN-JW-nOV"/>
                     </connections>
