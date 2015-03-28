@@ -26,10 +26,10 @@ class PaintingBrushSettingsView : UIView {
         self.strokeColorPreview.layer.borderColor = UIColor.blackColor().CGColor
         self.strokeColorPreview.layer.borderWidth = 1
         
-        self.strokeWidthSlider.addTarget(self, action: "strokeWidthChanged:", forControlEvents: UIControlEvents.ValueChanged)
-        self.strokeColorRedSlider.addTarget(self, action: "strokeColorChanged:", forControlEvents: UIControlEvents.ValueChanged)
-        self.strokeColorGreenSlider.addTarget(self, action: "strokeColorChanged:", forControlEvents: UIControlEvents.ValueChanged)
-        self.strokeColorBlueSlider.addTarget(self, action: "strokeColorChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        self.strokeWidthSlider.addTarget(self, action: "strokeWidthChanged:", forControlEvents:.ValueChanged)
+        self.strokeColorRedSlider.addTarget(self, action: "strokeColorChanged:", forControlEvents:.ValueChanged)
+        self.strokeColorGreenSlider.addTarget(self, action: "strokeColorChanged:", forControlEvents:.ValueChanged)
+        self.strokeColorBlueSlider.addTarget(self, action: "strokeColorChanged:", forControlEvents:.ValueChanged)
         
         self.strokeColorRedSlider.sendActionsForControlEvents(UIControlEvents.ValueChanged)
     }
