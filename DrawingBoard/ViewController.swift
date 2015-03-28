@@ -35,27 +35,7 @@ class ViewController: UIViewController {
         ]
         self.toolbarItems = self.toolbar.items
         
-        let brushSettingsView = UINib(nibName: "PaintingBrushSettingsView", bundle: nil).instantiateWithOwner(nil, options: nil).first as PaintingBrushSettingsView
-        brushSettingsView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.toolbar.addSubview(brushSettingsView)
-        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[settingsView]-0-|",
-            options: .DirectionLeadingToTrailing,
-            metrics: nil,
-            views: ["settingsView" : brushSettingsView]))
-        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[settingsView]-44-|",
-            options: .DirectionLeadingToTrailing,
-            metrics: nil,
-            views: ["settingsView" : brushSettingsView]))
-        brushSettingsView.hidden = true
-        brushSettingsView.tag = 1
-        brushSettingsView.strokeWidthChangedBlock = {
-            [unowned self] (strokeWidth: CGFloat) -> Void in
-            self.board.strokeWidth = strokeWidth
-        }
-        brushSettingsView.strokeColorChangedBlock = {
-            [unowned self] (strokeColor: UIColor) -> Void in
-            self.board.strokeColor = strokeColor
-        }
+        self.setupBrushSettingsView()
         
         self.board.drawingStateChangedBlock = {(state: DrawingState) -> () in
             if state == .Began {
@@ -83,6 +63,34 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setupBrushSettingsView() {
+        let brushSettingsView = UINib(nibName: "PaintingBrushSettingsView", bundle: nil).instantiateWithOwner(nil, options: nil).first as PaintingBrushSettingsView
+        brushSettingsView.setTranslatesAutoresizingMaskIntoConstraints(false)
+
+        self.toolbar.addSubview(brushSettingsView)
+        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[settingsView]-0-|",
+            options: .DirectionLeadingToTrailing,
+            metrics: nil,
+            views: ["settingsView" : brushSettingsView]))
+        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[settingsView]-44-|",
+            options: .DirectionLeadingToTrailing,
+            metrics: nil,
+            views: ["settingsView" : brushSettingsView]))
+        
+        brushSettingsView.hidden = true
+        brushSettingsView.tag = 1
+        
+        brushSettingsView.strokeWidthChangedBlock = {
+            [unowned self] (strokeWidth: CGFloat) -> Void in
+            self.board.strokeWidth = strokeWidth
+        }
+        
+        brushSettingsView.strokeColorChangedBlock = {
+            [unowned self] (strokeColor: UIColor) -> Void in
+            self.board.strokeColor = strokeColor
+        }
     }
 
     @IBAction func switchBrush(sender: UISegmentedControl) {
