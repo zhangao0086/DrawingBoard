@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9C0FAAC31AC5B7A000C470BC /* PaintingBrushSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0FAAC21AC5B7A000C470BC /* PaintingBrushSettingView.swift */; };
-		9C0FAAC51AC5B7BC00C470BC /* PaintingBrushSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FAAC41AC5B7BC00C470BC /* PaintingBrushSettingView.xib */; };
+		9C0FAAC31AC5B7A000C470BC /* PaintingBrushSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0FAAC21AC5B7A000C470BC /* PaintingBrushSettingsView.swift */; };
+		9C0FAAC51AC5B7BC00C470BC /* PaintingBrushSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0FAAC41AC5B7BC00C470BC /* PaintingBrushSettingsView.xib */; };
 		9CB604981AC44D7500C9C109 /* canvas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CB604971AC44D7500C9C109 /* canvas@2x.png */; };
 		9CCF258D1ABA7889009A534F /* EraserBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF258C1ABA7889009A534F /* EraserBrush.swift */; };
 		9CD69B341A90B25900533279 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD69B331A90B25900533279 /* AppDelegate.swift */; };
@@ -37,8 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9C0FAAC21AC5B7A000C470BC /* PaintingBrushSettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingBrushSettingView.swift; sourceTree = "<group>"; };
-		9C0FAAC41AC5B7BC00C470BC /* PaintingBrushSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintingBrushSettingView.xib; sourceTree = "<group>"; };
+		9C0FAAC21AC5B7A000C470BC /* PaintingBrushSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingBrushSettingsView.swift; sourceTree = "<group>"; };
+		9C0FAAC41AC5B7BC00C470BC /* PaintingBrushSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintingBrushSettingsView.xib; sourceTree = "<group>"; };
 		9CB604971AC44D7500C9C109 /* canvas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "canvas@2x.png"; sourceTree = "<group>"; };
 		9CCF258C1ABA7889009A534F /* EraserBrush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EraserBrush.swift; sourceTree = "<group>"; };
 		9CD69B2E1A90B25900533279 /* DrawingBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,8 +103,8 @@
 				9CDFF6E91AB91894007BD247 /* Brushes */,
 				9CD69B331A90B25900533279 /* AppDelegate.swift */,
 				9CD69B351A90B25900533279 /* ViewController.swift */,
-				9C0FAAC21AC5B7A000C470BC /* PaintingBrushSettingView.swift */,
-				9C0FAAC41AC5B7BC00C470BC /* PaintingBrushSettingView.xib */,
+				9C0FAAC21AC5B7A000C470BC /* PaintingBrushSettingsView.swift */,
+				9C0FAAC41AC5B7BC00C470BC /* PaintingBrushSettingsView.xib */,
 				9CD69B371A90B25900533279 /* Main.storyboard */,
 				9CD69B3A1A90B25900533279 /* Images.xcassets */,
 				9CD69B3C1A90B25900533279 /* LaunchScreen.xib */,
@@ -242,7 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CD69B391A90B25900533279 /* Main.storyboard in Resources */,
-				9C0FAAC51AC5B7BC00C470BC /* PaintingBrushSettingView.xib in Resources */,
+				9C0FAAC51AC5B7BC00C470BC /* PaintingBrushSettingsView.xib in Resources */,
 				9CB604981AC44D7500C9C109 /* canvas@2x.png in Resources */,
 				9CD69B3E1A90B25900533279 /* LaunchScreen.xib in Resources */,
 				9CD69B3B1A90B25900533279 /* Images.xcassets in Resources */,
@@ -271,7 +271,7 @@
 				9CD69B361A90B25900533279 /* ViewController.swift in Sources */,
 				9CDFF6EF1AB91894007BD247 /* EllipseBrush.swift in Sources */,
 				9CD69B341A90B25900533279 /* AppDelegate.swift in Sources */,
-				9C0FAAC31AC5B7A000C470BC /* PaintingBrushSettingView.swift in Sources */,
+				9C0FAAC31AC5B7A000C470BC /* PaintingBrushSettingsView.swift in Sources */,
 				9CDFF6F01AB91894007BD247 /* LineBrush.swift in Sources */,
 				9CDFF6E81AB91738007BD247 /* Board.swift in Sources */,
 			);

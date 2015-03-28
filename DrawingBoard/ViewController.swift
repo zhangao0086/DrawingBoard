@@ -16,6 +16,9 @@ class ViewController: UIViewController {
     @IBOutlet var topView: UIView!
     @IBOutlet var toolbar: UIToolbar!
     
+    var toolbarEditingItems: [UIBarButtonItem]?
+    var currentSettingsView: UIView?
+    
     @IBOutlet var topViewConstraintY: NSLayoutConstraint!
     @IBOutlet var toolbarConstraintBottom: NSLayoutConstraint!
     @IBOutlet var toolbarConstraintHeight: NSLayoutConstraint!
@@ -26,24 +29,30 @@ class ViewController: UIViewController {
 
         self.board.brush = brushes[0]
         
-        let brushSettingView = UINib(nibName: "PaintingBrushSettingView", bundle: nil).instantiateWithOwner(nil, options: nil).first as PaintingBrushSettingView
-        brushSettingView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.toolbar.addSubview(brushSettingView)
-        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[settingView]-0-|",
+        self.toolbarEditingItems = [
+            UIBarButtonItem(barButtonSystemItem:.FlexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "完成", style:.Plain, target: self, action: "endSetting")
+        ]
+        self.toolbarItems = self.toolbar.items
+        
+        let brushSettingsView = UINib(nibName: "PaintingBrushSettingsView", bundle: nil).instantiateWithOwner(nil, options: nil).first as PaintingBrushSettingsView
+        brushSettingsView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.toolbar.addSubview(brushSettingsView)
+        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[settingsView]-0-|",
             options: .DirectionLeadingToTrailing,
             metrics: nil,
-            views: ["settingView" : brushSettingView]))
-        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[settingView]-0-|",
+            views: ["settingsView" : brushSettingsView]))
+        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[settingsView]-0-|",
             options: .DirectionLeadingToTrailing,
             metrics: nil,
-            views: ["settingView" : brushSettingView]))
-        brushSettingView.hidden = true
-        brushSettingView.tag = 1
-        brushSettingView.strokeWidthChangedBlock = {
+            views: ["settingsView" : brushSettingsView]))
+        brushSettingsView.hidden = true
+        brushSettingsView.tag = 1
+        brushSettingsView.strokeWidthChangedBlock = {
             [unowned self] (strokeWidth: CGFloat) -> Void in
             self.board.strokeWidth = strokeWidth
         }
-        brushSettingView.strokeColorChangedBlock = {
+        brushSettingsView.strokeColorChangedBlock = {
             [unowned self] (strokeColor: UIColor) -> Void in
             self.board.strokeColor = strokeColor
         }
@@ -83,15 +92,27 @@ class ViewController: UIViewController {
     }
     
     @IBAction func paintingBrushSettings() {
-        
         self.toolbarConstraintHeight.constant = 300
         
-        self.toolbar.setItems(nil, animated: true)
+        self.toolbar.setItems(self.toolbarEditingItems, animated: true)
         UIView.beginAnimations(nil, context: nil)
         self.toolbar.layoutIfNeeded()
         UIView.commitAnimations()
         
-        self.toolbar.viewWithTag(1)?.hidden = false
+        self.currentSettingsView = self.toolbar.viewWithTag(1)
+        self.currentSettingsView?.hidden = false
+    }
+    
+    @IBAction func endSetting() {
+        self.toolbarConstraintHeight.constant = 44
+        
+        self.toolbar.setItems(self.toolbarItems, animated: true)
+        
+        UIView.beginAnimations(nil, context: nil)
+        self.toolbar.layoutIfNeeded()
+        UIView.commitAnimations()
+        
+        self.currentSettingsView?.hidden = true
     }
 }
 

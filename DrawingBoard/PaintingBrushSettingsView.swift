@@ -1,5 +1,5 @@
 //
-//  PaintingBrushSettingView.swift
+//  PaintingBrushSettingsView.swift
 //  DrawingBoard
 //
 //  Created by ZhangAo on 15-3-28.
@@ -9,7 +9,7 @@
 import UIKit
 
 
-class PaintingBrushSettingView : UIView {
+class PaintingBrushSettingsView : UIView {
     
     var strokeWidthChangedBlock: ((strokeWidth: CGFloat) -> Void)?
     var strokeColorChangedBlock: ((strokeColor: UIColor) -> Void)?
