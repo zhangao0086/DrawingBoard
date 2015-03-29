@@ -34,28 +34,26 @@ class ViewController: UIViewController {
             UIBarButtonItem(title: "完成", style:.Plain, target: self, action: "endSetting")
         ]
         self.toolbarItems = self.toolbar.items
-        
+
         self.setupBrushSettingsView()
         self.setupBackgroundSettingsView()
         
         self.board.drawingStateChangedBlock = {(state: DrawingState) -> () in
-            if state == .Began {
-                self.topViewConstraintY.constant = -self.topView.frame.size.height
-                self.toolbarConstraintBottom.constant = -self.toolbar.frame.size.height
+            if state != .Moved {
                 UIView.beginAnimations(nil, context: nil)
-                
-                self.topView.layoutIfNeeded()
-                self.toolbar.layoutIfNeeded()
-                
-                UIView.commitAnimations()
-            } else if state == .Ended {
-                self.topViewConstraintY.constant = 0
-                self.toolbarConstraintBottom.constant = 0
-                UIView.beginAnimations(nil, context: nil)
-                
-                self.topView.layoutIfNeeded()
-                self.toolbar.layoutIfNeeded()
-                
+                if state == .Began {
+                    self.topViewConstraintY.constant = -self.topView.frame.size.height
+                    self.toolbarConstraintBottom.constant = -self.toolbar.frame.size.height
+                    
+                    self.topView.layoutIfNeeded()
+                    self.toolbar.layoutIfNeeded()
+                } else if state == .Ended {
+                    self.topViewConstraintY.constant = 0
+                    self.toolbarConstraintBottom.constant = 0
+                    
+                    self.topView.layoutIfNeeded()
+                    self.toolbar.layoutIfNeeded()
+                }
                 UIView.commitAnimations()
             }
         }
