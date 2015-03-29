@@ -27,14 +27,14 @@ class RGBColorPicker: UIView {
         self.initial()
     }
     
-    func initial() {
+    private func initial() {
         self.backgroundColor = UIColor.clearColor()
         let trackColors = [UIColor.redColor(), UIColor.greenColor(), UIColor.blueColor()]
         
         for index in 1...3 {
             let slider = UISlider()
-            slider.minimumValue = 1
-            slider.value = 1
+            slider.minimumValue = 0
+            slider.value = 0
             slider.maximumValue = 255
             slider.minimumTrackTintColor = trackColors[index - 1]
             slider.addTarget(self, action: "colorChanged:", forControlEvents: .ValueChanged)
@@ -64,7 +64,7 @@ class RGBColorPicker: UIView {
         }
     }
     
-    @IBAction func colorChanged(slider: UISlider) {
+    @IBAction private func colorChanged(slider: UISlider) {
         let color = UIColor(
             red: CGFloat(self.sliders[0].value / 255.0),
             green: CGFloat(self.sliders[1].value / 255.0),
@@ -76,6 +76,20 @@ class RGBColorPicker: UIView {
         
         if let colorChangedBlock = self.colorChangedBlock {
             colorChangedBlock(color: color)
+        }
+    }
+    
+    func setCurrentColor(color: UIColor) {
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0
+        color.getRed(&red, green: &green, blue: &blue, alpha: nil)
+        let colors = [red, green, blue]
+        
+        for index in 0..<self.sliders.count {
+            let slider = self.sliders[index]
+            slider.value = Float(colors[index]) * 255
+            
+            let label = self.labels[index]
+            label.text = NSString(format: "%.0f", slider.value)
         }
     }
 }
