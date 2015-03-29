@@ -64,6 +64,10 @@ class RGBColorPicker: UIView {
         }
     }
     
+    override func intrinsicContentSize() -> CGSize {
+        return CGSize(width: UIViewNoIntrinsicMetric, height: 107)
+    }
+    
     @IBAction private func colorChanged(slider: UISlider) {
         let color = UIColor(
             red: CGFloat(self.sliders[0].value / 255.0),
