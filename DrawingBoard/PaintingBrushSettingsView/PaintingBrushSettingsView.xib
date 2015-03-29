@@ -7,7 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PaintingBrushSettingsView" customModule="DrawingBoard" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="476"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="qIC-gq-WY4">
@@ -65,14 +65,20 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9v-1b-Iuw" customClass="RGBColorPicker" customModule="DrawingBoard" customModuleProvider="target">
-                    <rect key="frame" x="25" y="138" width="565" height="107"/>
+                    <rect key="frame" x="25" y="138" width="565" height="338"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="107" id="Fl9-yr-nQS"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Fl9-yr-nQS"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="M9v-1b-Iuw" secondAttribute="bottom" id="15b-Ef-Fmj"/>
                 <constraint firstItem="qIC-gq-WY4" firstAttribute="leading" secondItem="CYW-U4-H4o" secondAttribute="trailing" constant="5" id="1MJ-xl-63t"/>
                 <constraint firstItem="VWg-4L-MGz" firstAttribute="top" secondItem="hnL-eF-a9S" secondAttribute="bottom" constant="5" id="A4x-zv-EsL"/>
                 <constraint firstItem="qIC-gq-WY4" firstAttribute="centerY" secondItem="CYW-U4-H4o" secondAttribute="centerY" id="HMr-zL-0AM"/>
@@ -100,6 +106,7 @@
                 <constraint firstItem="qIC-gq-WY4" firstAttribute="leading" secondItem="M9v-1b-Iuw" secondAttribute="leading" id="z7o-8P-E4A"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="HMr-zL-0AM"/>
@@ -117,7 +124,7 @@
                 <outlet property="strokeColorPreview" destination="VWg-4L-MGz" id="bNd-Ia-eR7"/>
                 <outlet property="strokeWidthSlider" destination="qIC-gq-WY4" id="Rcn-c8-vkc"/>
             </connections>
-            <point key="canvasLocation" x="207" y="155"/>
+            <point key="canvasLocation" x="207" y="37"/>
         </view>
     </objects>
 </document>
