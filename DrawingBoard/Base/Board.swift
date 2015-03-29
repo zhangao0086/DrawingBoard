@@ -39,6 +39,20 @@ class Board: UIImageView {
         super.init(coder: aDecoder)
     }
     
+    func takeImage() -> UIImage {
+        UIGraphicsBeginImageContext(self.bounds.size)
+        
+        self.backgroundColor?.setFill()
+        UIRectFill(self.bounds)
+        
+        self.image?.drawInRect(self.bounds)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
     // MARK: - touches methods
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {

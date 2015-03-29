@@ -131,6 +131,15 @@ class ViewController: UIViewController {
         
         self.toolbar.bringSubviewToFront(self.currentSettingsView!)
     }
+    
+    func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafePointer<Void>) {
+        if let err = error {
+            UIAlertView(title: "错误", message: err.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
+        } else {
+            UIAlertView(title: "提示", message: "保存成功", delegate: nil, cancelButtonTitle: "确定").show()
+        }
+    }
+
 
     @IBAction func switchBrush(sender: UISegmentedControl) {
         assert(sender.tag < self.brushes.count, "!!!")
@@ -150,6 +159,10 @@ class ViewController: UIViewController {
         self.currentSettingsView?.hidden = false
         
         self.updateToolbarForSettingsView()
+    }
+    
+    @IBAction func saveToAlbum() {
+        UIImageWriteToSavedPhotosAlbum(self.board.takeImage(), self, "image:didFinishSavingWithError:contextInfo:", nil)
     }
     
     @IBAction func endSetting() {

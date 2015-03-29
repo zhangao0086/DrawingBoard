@@ -68,7 +68,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="DOr-4D-MV8"/>
-                                    <barButtonItem title="保存到图库" id="0iG-0t-GFC"/>
+                                    <barButtonItem title="保存到图库" id="0iG-0t-GFC">
+                                        <connections>
+                                            <action selector="saveToAlbum" destination="vXZ-lx-hvc" id="oK4-q6-T46"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
