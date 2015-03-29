@@ -73,6 +73,7 @@ class ViewController: UIViewController {
         
         brushSettingsView.hidden = true
         brushSettingsView.tag = 1
+        brushSettingsView.setBackgroundColor(self.board.strokeColor)
         
         brushSettingsView.strokeWidthChangedBlock = {
             [unowned self] (strokeWidth: CGFloat) -> Void in

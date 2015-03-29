@@ -15,6 +15,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="165"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qPu-kk-ODP" customClass="RGBColorPicker" customModule="DrawingBoard" customModuleProvider="target">
+                        <rect key="frame" x="8" y="58" width="584" height="107"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="107" id="OmC-hm-1wG"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="OmC-hm-1wG"/>
+                            </mask>
+                        </variation>
+                    </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBB-fY-ytH">
                         <rect key="frame" x="8" y="8" width="135" height="30"/>
                         <constraints>
@@ -28,17 +39,6 @@
                             <action selector="pickImage" destination="Gtl-wN-uke" eventType="touchUpInside" id="DYe-21-xGc"/>
                         </connections>
                     </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qPu-kk-ODP" customClass="RGBColorPicker" customModule="DrawingBoard" customModuleProvider="target">
-                        <rect key="frame" x="8" y="58" width="584" height="107"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="107" id="OmC-hm-1wG"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="OmC-hm-1wG"/>
-                            </mask>
-                        </variation>
-                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="dBB-fY-ytH" firstAttribute="top" secondItem="6Gz-pg-tdp" secondAttribute="bottom" constant="8" id="9tR-y3-NsO"/>
@@ -55,7 +55,7 @@
             <connections>
                 <outlet property="colorPicker" destination="qPu-kk-ODP" id="Q9K-6c-yvv"/>
             </connections>
-            <point key="canvasLocation" x="189" y="152"/>
+            <point key="canvasLocation" x="-45" y="-62.5"/>
         </viewController>
     </objects>
 </document>
