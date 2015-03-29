@@ -16,9 +16,7 @@ class PaintingBrushSettingsView : UIView {
     
     @IBOutlet private var strokeWidthSlider: UISlider!
     @IBOutlet private var strokeColorPreview: UIView!
-    @IBOutlet private var strokeColorRedSlider: UISlider!
-    @IBOutlet private var strokeColorGreenSlider: UISlider!
-    @IBOutlet private var strokeColorBlueSlider: UISlider!
+    @IBOutlet private var colorPicker: RGBColorPicker!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,32 +24,21 @@ class PaintingBrushSettingsView : UIView {
         self.strokeColorPreview.layer.borderColor = UIColor.blackColor().CGColor
         self.strokeColorPreview.layer.borderWidth = 1
         
-        self.strokeWidthSlider.addTarget(self, action: "strokeWidthChanged:", forControlEvents:.ValueChanged)
-        self.strokeColorRedSlider.addTarget(self, action: "strokeColorChanged:", forControlEvents:.ValueChanged)
-        self.strokeColorGreenSlider.addTarget(self, action: "strokeColorChanged:", forControlEvents:.ValueChanged)
-        self.strokeColorBlueSlider.addTarget(self, action: "strokeColorChanged:", forControlEvents:.ValueChanged)
+        self.colorPicker.colorChangedBlock = {
+            [unowned self] (color: UIColor) in
+            
+            self.strokeColorPreview.backgroundColor = color
+            if let strokeColorChangedBlock = self.strokeColorChangedBlock {
+                strokeColorChangedBlock(strokeColor: color)
+            }
+        }
         
-        self.strokeColorRedSlider.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+        self.strokeWidthSlider.addTarget(self, action: "strokeWidthChanged:", forControlEvents:.ValueChanged)
     }
     
     func strokeWidthChanged(slider: UISlider) {
         if let strokeWidthChangedBlock = self.strokeWidthChangedBlock {
             strokeWidthChangedBlock(strokeWidth: CGFloat(slider.value))
-        }
-    }
-    
-    @IBAction func strokeColorChanged(slider: UISlider) {
-        self.strokeColorPreview.backgroundColor = UIColor(
-            red: CGFloat(self.strokeColorRedSlider.value / 255.0),
-            green: CGFloat(self.strokeColorGreenSlider.value / 255.0),
-            blue: CGFloat(self.self.strokeColorBlueSlider.value / 255.0),
-            alpha: 1)
-        
-        let label = self.viewWithTag(slider.tag + 10) as UILabel
-        label.text = NSString(format: "%.0f", slider.value)
-        
-        if let strokeColorChangedBlock = self.strokeColorChangedBlock {
-            strokeColorChangedBlock(strokeColor: self.strokeColorPreview.backgroundColor!)
         }
     }
 }
