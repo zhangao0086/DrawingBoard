@@ -62,7 +62,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Z83-Bl-JyM"/>
-                                    <barButtonItem title="背景设置" id="1X1-wH-sGL"/>
+                                    <barButtonItem title="背景设置" id="1X1-wH-sGL">
+                                        <connections>
+                                            <action selector="backgroundSettings" destination="vXZ-lx-hvc" id="vpx-Tj-Quu"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="DOr-4D-MV8"/>
                                     <barButtonItem title="保存到图库" id="0iG-0t-GFC"/>
                                 </items>

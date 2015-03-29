@@ -36,6 +36,7 @@ class ViewController: UIViewController {
         self.toolbarItems = self.toolbar.items
         
         self.setupBrushSettingsView()
+        self.setupBackgroundSettingsView()
         
         self.board.drawingStateChangedBlock = {(state: DrawingState) -> () in
             if state == .Began {
@@ -67,17 +68,8 @@ class ViewController: UIViewController {
     
     func setupBrushSettingsView() {
         let brushSettingsView = UINib(nibName: "PaintingBrushSettingsView", bundle: nil).instantiateWithOwner(nil, options: nil).first as PaintingBrushSettingsView
-        brushSettingsView.setTranslatesAutoresizingMaskIntoConstraints(false)
-
-        self.toolbar.addSubview(brushSettingsView)
-        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[settingsView]-0-|",
-            options: .DirectionLeadingToTrailing,
-            metrics: nil,
-            views: ["settingsView" : brushSettingsView]))
-        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[settingsView]-44-|",
-            options: .DirectionLeadingToTrailing,
-            metrics: nil,
-            views: ["settingsView" : brushSettingsView]))
+        
+        self.addConstraintsToToolbarForSettingsView(brushSettingsView)
         
         brushSettingsView.hidden = true
         brushSettingsView.tag = 1
@@ -86,11 +78,58 @@ class ViewController: UIViewController {
             [unowned self] (strokeWidth: CGFloat) -> Void in
             self.board.strokeWidth = strokeWidth
         }
-        
+
         brushSettingsView.strokeColorChangedBlock = {
             [unowned self] (strokeColor: UIColor) -> Void in
             self.board.strokeColor = strokeColor
         }
+    }
+    
+    func setupBackgroundSettingsView() {
+        let backgroundSettingsVC = UINib(nibName: "BackgroundSettingsVC", bundle: nil).instantiateWithOwner(nil, options: nil).first as BackgroundSettingsVC
+        
+        self.addConstraintsToToolbarForSettingsView(backgroundSettingsVC.view)
+        
+        backgroundSettingsVC.view.hidden = true
+        backgroundSettingsVC.view.tag = 2
+        backgroundSettingsVC.setBackgroundColor(self.board.backgroundColor!)
+        
+        self.addChildViewController(backgroundSettingsVC)
+        
+        backgroundSettingsVC.backgroundImageChangedBlock = {
+            [unowned self] (backgroundImage: UIImage) in
+            self.board.backgroundColor = UIColor(patternImage: backgroundImage)
+        }
+        
+        backgroundSettingsVC.backgroundColorChangedBlock = {
+            [unowned self] (backgroundColor: UIColor) in
+            self.board.backgroundColor = backgroundColor
+        }
+    }
+    
+    func addConstraintsToToolbarForSettingsView(view: UIView) {
+        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        self.toolbar.addSubview(view)
+        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[settingsView]-0-|",
+            options: .DirectionLeadingToTrailing,
+            metrics: nil,
+            views: ["settingsView" : view]))
+        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[settingsView(==height)]",
+            options: .DirectionLeadingToTrailing,
+            metrics: ["height" : view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height],
+            views: ["settingsView" : view]))
+    }
+    
+    func updateToolbarForSettingsView() {
+        self.toolbarConstraintHeight.constant = self.currentSettingsView!.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 44
+        
+        self.toolbar.setItems(self.toolbarEditingItems, animated: true)
+        UIView.beginAnimations(nil, context: nil)
+        self.toolbar.layoutIfNeeded()
+        UIView.commitAnimations()
+        
+        self.toolbar.bringSubviewToFront(self.currentSettingsView!)
     }
 
     @IBAction func switchBrush(sender: UISegmentedControl) {
@@ -100,16 +139,17 @@ class ViewController: UIViewController {
     }
     
     @IBAction func paintingBrushSettings() {
-        self.toolbarConstraintHeight.constant = 300
-        
-        self.toolbar.setItems(self.toolbarEditingItems, animated: true)
-        UIView.beginAnimations(nil, context: nil)
-        self.toolbar.layoutIfNeeded()
-        UIView.commitAnimations()
-        
         self.currentSettingsView = self.toolbar.viewWithTag(1)
         self.currentSettingsView?.hidden = false
-        self.toolbar.bringSubviewToFront(self.currentSettingsView!)
+     
+        self.updateToolbarForSettingsView()
+    }
+
+    @IBAction func backgroundSettings() {
+        self.currentSettingsView = self.toolbar.viewWithTag(2)
+        self.currentSettingsView?.hidden = false
+        
+        self.updateToolbarForSettingsView()
     }
     
     @IBAction func endSetting() {
