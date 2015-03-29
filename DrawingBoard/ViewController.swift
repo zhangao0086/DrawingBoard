@@ -48,6 +48,7 @@ class ViewController: UIViewController {
                     self.topView.layoutIfNeeded()
                     self.toolbar.layoutIfNeeded()
                 } else if state == .Ended {
+                    UIView.setAnimationDelay(1.0)
                     self.topViewConstraintY.constant = 0
                     self.toolbarConstraintBottom.constant = 0
                     
