@@ -66,13 +66,13 @@ class ViewController: UIViewController {
     }
     
     func setupBrushSettingsView() {
-        let brushSettingsView = UINib(nibName: "PaintingBrushSettingsView", bundle: nil).instantiateWithOwner(nil, options: nil).first as PaintingBrushSettingsView
+        let brushSettingsView = UINib(nibName: "PaintingBrushSettingsView", bundle: nil).instantiateWithOwner(nil, options: nil).first as! PaintingBrushSettingsView
         
         self.addConstraintsToToolbarForSettingsView(brushSettingsView)
         
         brushSettingsView.hidden = true
         brushSettingsView.tag = 1
-        brushSettingsView.setBackgroundColor(self.board.strokeColor)
+        brushSettingsView.backgroundColor = self.board.strokeColor
         
         brushSettingsView.strokeWidthChangedBlock = {
             [unowned self] (strokeWidth: CGFloat) -> Void in
@@ -86,7 +86,7 @@ class ViewController: UIViewController {
     }
     
     func setupBackgroundSettingsView() {
-        let backgroundSettingsVC = UINib(nibName: "BackgroundSettingsVC", bundle: nil).instantiateWithOwner(nil, options: nil).first as BackgroundSettingsVC
+        let backgroundSettingsVC = UINib(nibName: "BackgroundSettingsVC", bundle: nil).instantiateWithOwner(nil, options: nil).first as! BackgroundSettingsVC
         
         self.addConstraintsToToolbarForSettingsView(backgroundSettingsVC.view)
         

@@ -76,7 +76,7 @@ class RGBColorPicker: UIView {
             alpha: 1)
         
         let label = self.labels[find(self.sliders, slider)!]
-        label.text = NSString(format: "%.0f", slider.value)
+        label.text = NSString(format: "%.0f", slider.value) as String
         
         if let colorChangedBlock = self.colorChangedBlock {
             colorChangedBlock(color: color)
@@ -93,7 +93,7 @@ class RGBColorPicker: UIView {
             slider.value = Float(colors[index]) * 255
             
             let label = self.labels[index]
-            label.text = NSString(format: "%.0f", slider.value)
+            label.text = NSString(format: "%.0f", slider.value) as String
         }
     }
 }

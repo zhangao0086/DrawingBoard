@@ -25,11 +25,11 @@ class Board: UIImageView {
     
     private var drawingState: DrawingState!
     
-    override init() {
+    override init(frame: CGRect) {
         self.strokeColor = UIColor.blackColor()
         self.strokeWidth = 1
         
-        super.init()
+        super.init(frame: frame)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -55,11 +55,11 @@ class Board: UIImageView {
     
     // MARK: - touches methods
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         if let brush = self.brush {
             brush.lastPoint = nil
             
-            brush.beginPoint = touches.anyObject()!.locationInView(self)
+            brush.beginPoint = (touches.first as! UITouch).locationInView(self)
             brush.endPoint = brush.beginPoint
             
             self.drawingState = .Began
@@ -67,24 +67,24 @@ class Board: UIImageView {
         }
     }
     
-    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
         if let brush = self.brush {
-            brush.endPoint = touches.anyObject()!.locationInView(self)
+            brush.endPoint = (touches.first as! UITouch).locationInView(self)
             
             self.drawingState = .Moved
             self.drawingImage()
         }
     }
     
-    override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
+    override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
         if let brush = self.brush {
             brush.endPoint = nil
         }
     }
     
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         if let brush = self.brush {
-            brush.endPoint = touches.anyObject()!.locationInView(self)
+            brush.endPoint = (touches.first as! UITouch).locationInView(self)
             
             self.drawingState = .Ended
             
