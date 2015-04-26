@@ -25,6 +25,9 @@ class Board: UIImageView {
     
     private var drawingState: DrawingState!
     
+    private var undoImages = [UIImage]()
+    private var redoImages = [UIImage]()
+    
     override init(frame: CGRect) {
         self.strokeColor = UIColor.blackColor()
         self.strokeWidth = 1
@@ -37,6 +40,56 @@ class Board: UIImageView {
         self.strokeWidth = 1
         
         super.init(coder: aDecoder)
+    }
+    
+    // MARK: - Public methods
+    
+    var canUndo: Bool {
+        get {
+            return self.undoImages.count > 0 || self.image != nil
+        }
+    }
+    
+    var canRedo: Bool {
+        get {
+            return self.redoImages.count > 0
+        }
+    }
+    
+    func undo() {
+        if self.canUndo == false {
+            return
+        }
+        
+        if self.undoImages.count > 0 {
+            self.redoImages.append(self.image!)
+
+            let lastImage = self.undoImages.removeLast()
+            self.image = lastImage
+            
+        } else if self.image != nil {
+            self.redoImages.append(self.image!)
+            self.image = nil
+        }
+        
+        self.realImage = self.image
+    }
+    
+    func redo() {
+        if self.canRedo == false {
+            return
+        }
+        
+        if self.redoImages.count > 0 {
+            if self.image != nil {
+                self.undoImages.append(self.image!)
+            }
+            
+            let lastImage = self.redoImages.removeLast()
+            self.image = lastImage
+            
+            self.realImage = self.image
+        }
     }
     
     func takeImage() -> UIImage {
@@ -63,6 +116,7 @@ class Board: UIImageView {
             brush.endPoint = brush.beginPoint
             
             self.drawingState = .Began
+            
             self.drawingImage()
         }
     }
@@ -72,6 +126,7 @@ class Board: UIImageView {
             brush.endPoint = (touches.first as! UITouch).locationInView(self)
             
             self.drawingState = .Moved
+            
             self.drawingImage()
         }
     }
@@ -126,6 +181,14 @@ class Board: UIImageView {
             }
             
             UIGraphicsEndImageContext()
+            
+            if self.drawingState == .Began {
+                self.redoImages = []
+                
+                if self.image != nil {
+                    self.undoImages.append(self.image!)
+                }
+            }
             
             self.image = previewImage
             

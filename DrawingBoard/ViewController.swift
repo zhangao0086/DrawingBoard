@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet var board: Board!
     @IBOutlet var topView: UIView!
     @IBOutlet var toolbar: UIToolbar!
+    @IBOutlet var undoButton: UIButton!
+    @IBOutlet var redoButton: UIButton!
     
     var toolbarEditingItems: [UIBarButtonItem]?
     var currentSettingsView: UIView?
@@ -47,6 +49,9 @@ class ViewController: UIViewController {
                     
                     self.topView.layoutIfNeeded()
                     self.toolbar.layoutIfNeeded()
+                    
+                    self.undoButton.alpha = 0
+                    self.redoButton.alpha = 0
                 } else if state == .Ended {
                     UIView.setAnimationDelay(1.0)
                     self.topViewConstraintY.constant = 0
@@ -54,6 +59,9 @@ class ViewController: UIViewController {
                     
                     self.topView.layoutIfNeeded()
                     self.toolbar.layoutIfNeeded()
+                    
+                    self.undoButton.alpha = 1
+                    self.redoButton.alpha = 1
                 }
                 UIView.commitAnimations()
             }
@@ -145,6 +153,14 @@ class ViewController: UIViewController {
         assert(sender.tag < self.brushes.count, "!!!")
         
         self.board.brush = self.brushes[sender.selectedSegmentIndex]
+    }
+    
+    @IBAction func undo(sender: UIButton) {
+        self.board.undo()
+    }
+    
+    @IBAction func redo(sneder: UIButton) {
+        self.board.redo()
     }
     
     @IBAction func paintingBrushSettings() {
