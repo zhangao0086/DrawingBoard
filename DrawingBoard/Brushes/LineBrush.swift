@@ -10,8 +10,8 @@ import UIKit
 
 class LineBrush: BaseBrush {
     
-    override func drawInContext(context: CGContextRef) {
-        CGContextMoveToPoint(context, beginPoint.x, beginPoint.y)
-        CGContextAddLineToPoint(context, endPoint.x, endPoint.y)
+    override func drawInPath(inout path: CGMutablePathRef) {
+        CGPathMoveToPoint(path, nil, beginPoint.x, beginPoint.y)
+        CGPathAddLineToPoint(path, nil, endPoint.x, endPoint.y)
     }
 }

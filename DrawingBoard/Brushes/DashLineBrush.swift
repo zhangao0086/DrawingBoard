@@ -10,11 +10,12 @@ import UIKit
 
 class DashLineBrush: BaseBrush {
     
-    override func drawInContext(context: CGContextRef) {
-        let lengths: [CGFloat] = [self.strokeWidth * 3, self.strokeWidth * 3]
-        CGContextSetLineDash(context, 0, lengths, 2)
+    override func drawInPath(inout path: CGMutablePathRef) {
+        CGPathMoveToPoint(path, nil, beginPoint.x, beginPoint.y)
+        CGPathAddLineToPoint(path, nil, endPoint.x, endPoint.y)
         
-        CGContextMoveToPoint(context, beginPoint.x, beginPoint.y)
-        CGContextAddLineToPoint(context, endPoint.x, endPoint.y)
+        let lengths: [CGFloat] = [self.strokeWidth * 3, self.strokeWidth * 3]
+        let dashLinePath = CGPathCreateCopyByDashingPath(path, nil, 0, lengths, 2)
+        path = CGPathCreateMutableCopy(dashLinePath)
     }
 }

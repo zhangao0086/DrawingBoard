@@ -10,9 +10,9 @@ import UIKit
 
 class EraserBrush: PencilBrush {
     
-    override func drawInContext(context: CGContextRef) {
-        CGContextSetBlendMode(context, kCGBlendModeClear)
+    override func drawInPath(inout path: CGMutablePathRef) {
+        CGContextSetBlendMode(self.context, kCGBlendModeClear)
         
-        super.drawInContext(context)
+        super.drawInPath(&path)
     }
 }

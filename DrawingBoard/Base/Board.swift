@@ -172,7 +172,10 @@ class Board: UIImageView {
             }
             
             brush.strokeWidth = self.strokeWidth
-            brush.drawInContext(context)
+            brush.context = context
+            var path = CGPathCreateMutable() as CGMutablePathRef
+            self.brush?.drawInPath(&path)
+            CGContextAddPath(context, path)
             CGContextStrokePath(context)
             
             let previewImage = UIGraphicsGetImageFromCurrentImageContext()

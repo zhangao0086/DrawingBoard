@@ -10,14 +10,13 @@ import UIKit
 
 class PencilBrush: BaseBrush {
     
-    override func drawInContext(context: CGContextRef) {
+    override func drawInPath(inout path: CGMutablePathRef) {
         if let lastPoint = self.lastPoint {
-            CGContextMoveToPoint(context, lastPoint.x, lastPoint.y)
-            CGContextAddLineToPoint(context, endPoint.x, endPoint.y)
+            CGPathMoveToPoint(path, nil, lastPoint.x, lastPoint.y)
         } else {
-            CGContextMoveToPoint(context, beginPoint.x, beginPoint.y)
-            CGContextAddLineToPoint(context, endPoint.x, endPoint.y)
+            CGPathMoveToPoint(path, nil, beginPoint.x, beginPoint.y)
         }
+        CGPathAddLineToPoint(path, nil, endPoint.x, endPoint.y)
     }
     
     override func supportedContinuousDrawing() -> Bool {

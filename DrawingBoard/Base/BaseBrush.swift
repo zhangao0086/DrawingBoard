@@ -12,13 +12,14 @@ protocol PaintBrush {
     
     func supportedContinuousDrawing() -> Bool
     
-    func drawInContext(context: CGContextRef)
+    func drawInPath(inout path: CGMutablePathRef)
 }
 
 class BaseBrush : NSObject, PaintBrush {
     var beginPoint: CGPoint!
     var endPoint: CGPoint!
     var lastPoint: CGPoint?
+    weak var context: CGContextRef?
     
     var strokeWidth: CGFloat!
     
@@ -26,7 +27,7 @@ class BaseBrush : NSObject, PaintBrush {
         return false
     }
     
-    func drawInContext(context: CGContextRef) {
+    func drawInPath(inout path: CGMutablePathRef) {
         assert(false, "must implements in subclass.")
     }
 }
