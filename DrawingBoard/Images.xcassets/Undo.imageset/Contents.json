@@ -6,12 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "button_undo.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "button_undo.png"
+      "scale" : "3x"
     }
   ],
   "info" : {

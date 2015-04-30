@@ -12,6 +12,7 @@ The drawing board supports:
 1. Custom background
 1. Custom brush
 1. Undo/Redo
+1. Memory-Optimized
 
 <img width=33% src="https://raw.githubusercontent.com/zhangao0086/DrawingBoard/master/preview7.png" /><img width=33% src="https://raw.githubusercontent.com/zhangao0086/DrawingBoard/master/preview2.png" /><img width=33% src="https://raw.githubusercontent.com/zhangao0086/DrawingBoard/master/preview3.png" /><br />
 <img width=33% src="https://raw.githubusercontent.com/zhangao0086/DrawingBoard/master/preview4.png" /><img width=33% src="https://raw.githubusercontent.com/zhangao0086/DrawingBoard/master/preview5.png" /><img width=33% src="https://raw.githubusercontent.com/zhangao0086/DrawingBoard/master/preview6.png" />
