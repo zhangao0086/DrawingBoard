@@ -81,7 +81,7 @@ class Board: UIImageView {
                 let length = min(images.count - 1, index + DBUndoManager.cahcesLength)
                 for i in location ... length {
                     autoreleasepool {
-                        var image = images[i]
+                        let image = images[i]
                         
                         if i > index - DBUndoManager.cahcesLength && i < index + DBUndoManager.cahcesLength {
                             setRealImage(image, forIndex: i) // 如果在缓存区域中，则从文件加载
@@ -93,18 +93,18 @@ class Board: UIImageView {
             }
         }
 
-        private static var basePath: String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first as! String
+        private static var basePath: String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
         private func setFaultImage(image: UIImage, forIndex: Int) {
             if !image.isKindOfClass(DBImageFault.self) {
-                let imagePath = DBUndoManager.basePath.stringByAppendingPathComponent("\(forIndex)")
-                UIImagePNGRepresentation(image).writeToFile(imagePath, atomically: false)
+                let imagePath = (DBUndoManager.basePath as NSString).stringByAppendingPathComponent("\(forIndex)")
+                UIImagePNGRepresentation(image)!.writeToFile(imagePath, atomically: false)
                 images[forIndex] = DBImageFault()
             }
         }
         
         private func setRealImage(image: UIImage, forIndex: Int) {
             if image.isKindOfClass(DBImageFault.self) {
-                let imagePath = DBUndoManager.basePath.stringByAppendingPathComponent("\(forIndex)")
+                let imagePath = (DBUndoManager.basePath as NSString).stringByAppendingPathComponent("\(forIndex)")
                 images[forIndex] = UIImage(data: NSData(contentsOfFile: imagePath)!)!
             }
         }
@@ -129,7 +129,7 @@ class Board: UIImageView {
         super.init(frame: frame)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.strokeColor = UIColor.blackColor()
         self.strokeWidth = 1
         
@@ -187,22 +187,22 @@ class Board: UIImageView {
     
     // MARK: - touches methods
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let brush = self.brush {
             brush.lastPoint = nil
             
-            brush.beginPoint = (touches.first as! UITouch).locationInView(self)
+            brush.beginPoint = touches.first!.locationInView(self)
             brush.endPoint = brush.beginPoint
-            
+			
             self.drawingState = .Began
             
             self.drawingImage()
         }
     }
     
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let brush = self.brush {
-            brush.endPoint = (touches.first as! UITouch).locationInView(self)
+            brush.endPoint = touches.first!.locationInView(self)
             
             self.drawingState = .Moved
             
@@ -210,15 +210,15 @@ class Board: UIImageView {
         }
     }
     
-    override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
         if let brush = self.brush {
             brush.endPoint = nil
         }
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let brush = self.brush {
-            brush.endPoint = (touches.first as! UITouch).locationInView(self)
+            brush.endPoint = touches.first!.locationInView(self)
             
             self.drawingState = .Ended
             
@@ -242,7 +242,7 @@ class Board: UIImageView {
             UIColor.clearColor().setFill()
             UIRectFill(self.bounds)
             
-            CGContextSetLineCap(context, kCGLineCapRound)
+            CGContextSetLineCap(context, CGLineCap.Round)
             CGContextSetLineWidth(context, self.strokeWidth)
             CGContextSetStrokeColorWithColor(context, self.strokeColor.CGColor)
             
@@ -251,7 +251,7 @@ class Board: UIImageView {
             }
             
             brush.strokeWidth = self.strokeWidth
-            brush.drawInContext(context)
+            brush.drawInContext(context!)
             CGContextStrokePath(context)
             
             let previewImage = UIGraphicsGetImageFromCurrentImageContext()

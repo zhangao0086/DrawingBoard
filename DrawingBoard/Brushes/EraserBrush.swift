@@ -11,7 +11,7 @@ import UIKit
 class EraserBrush: PencilBrush {
     
     override func drawInContext(context: CGContextRef) {
-        CGContextSetBlendMode(context, kCGBlendModeClear)
+        CGContextSetBlendMode(context, CGBlendMode.Clear)
         
         super.drawInContext(context)
     }

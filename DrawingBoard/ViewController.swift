@@ -116,7 +116,7 @@ class ViewController: UIViewController {
     }
     
     func addConstraintsToToolbarForSettingsView(view: UIView) {
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         
         self.toolbar.addSubview(view)
         self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[settingsView]-0-|",

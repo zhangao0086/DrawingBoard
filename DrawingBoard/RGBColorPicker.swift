@@ -21,7 +21,7 @@ class RGBColorPicker: UIView {
         self.initial()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.initial()
@@ -75,7 +75,7 @@ class RGBColorPicker: UIView {
             blue: CGFloat(self.sliders[2].value / 255.0),
             alpha: 1)
         
-        let label = self.labels[find(self.sliders, slider)!]
+        let label = self.labels[self.sliders.indexOf(slider)!]
         label.text = NSString(format: "%.0f", slider.value) as String
         
         if let colorChangedBlock = self.colorChangedBlock {
